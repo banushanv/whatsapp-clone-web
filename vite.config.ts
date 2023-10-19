@@ -8,7 +8,10 @@ export default defineConfig({
     vue(),
     eslint()
   ],
-  resolve: {
+  server: {
+    port: 8000 // change this to your desired port
+    },
+    resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url))
     }
