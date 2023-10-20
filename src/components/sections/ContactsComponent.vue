@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-gray-100 flex-1 overflow-auto">
+    <div class="bg-gray-100 flex-1   overflow-auto  ">
         <div v-for="contact in contacts" :key="contact.name">
             <div class="px-3 flex items-center hover:bg-grey-lighter hover:bg-gray-100  cursor-pointer" 
             :class="!contact.selected ? 'bg-white ' : ''" @click="onPersonChangeHandler(contact)">
@@ -25,6 +25,7 @@
 </template>
 <script setup lang="ts">
 import type ContactModel from '@/models/ContactModel';
+import type { PropType } from 'vue';
 
 defineProps({
   contacts: {
