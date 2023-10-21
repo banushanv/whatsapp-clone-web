@@ -69,7 +69,7 @@ const lastChatMessage = (chat: any) => {
 
 const lastCreatedAt = (chat: any) => {
   if (chat.messages.length) {
-    return dayjs(chat.messages[chat.messages.length - 1].createdAt).format('MMM D YY | HH:MM A');
+    return dayjs(chat.messages[chat.messages.length - 1].createdAt).format('YYYY-MM-DD');
   }
 };
 </script>

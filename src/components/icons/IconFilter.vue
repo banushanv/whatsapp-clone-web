@@ -13,6 +13,7 @@
     >
       <path
         fill='currentColor'
+        fill-opacity=".8"
         d='M10,18.1h4v-2h-4V18.1z M3,6.1v2h18v-2H3z M6,13.1h12v-2H6V13.1z'
       ></path>
     </svg>
