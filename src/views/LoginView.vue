@@ -24,11 +24,12 @@
 import { useUserStore } from '@/stores/userStore';
 import { useRouter } from 'vue-router';
 
-const userStore = useUserStore();
+const userStore: any = useUserStore();
 const router = useRouter();
 
 const callback = async (response: any) => {
     await userStore.getUserDetailsFromGoogle(response);
-    setTimeout(() => { router.push('/') ;}, 200);
+    setTimeout(() => { router.push('/') ;}, 100);
 };
+
 </script>

@@ -6,6 +6,10 @@ import App from './App.vue';
 import router from './router';
 import '../main.css';
 import vue3GoogleLogin  from 'vue3-google-login';
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
+
+const pinia = createPinia();
+pinia.use(piniaPluginPersistedstate);
 
 const app: any = createApp(App);
 app.use(createPinia()).use(router).use(i18n);

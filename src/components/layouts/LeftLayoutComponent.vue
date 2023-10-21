@@ -1,5 +1,6 @@
 <template>
-  <div class="w-1/3 border flex flex-col">
+  <div  id="Messages" 
+        class="pt-1 z-0 overflow-auto fixed h-[calc(100vh-100px)] w-[420px]">
     <!-- Header -->
     <LeftLayoutHeaderComponent ></LeftLayoutHeaderComponent>
 
@@ -7,27 +8,43 @@
     <SearchComponent :contacts="filteredArray" @on-filter-contacts="onFilteredContacts"></SearchComponent>
 
     <!-- Contacts -->
-    <ContactsComponent @person-select-change="onSelectPersonHandler" :contacts="filteredArray"></ContactsComponent>
-  </div>
+    
+
+    <div v-if="showFindFriends">
+            <FindFriendsComponent  />
+            </div>
+
+            <div v-else>
+                <ContactsComponent @person-select-change="onSelectPersonHandler" :contacts="filteredArray"></ContactsComponent>
+        </div>
+
+        </div>
+
 </template>
 
 <script setup lang="ts">
 import SearchComponent from '@/components/common/SearchComponent.vue';
 import LeftLayoutHeaderComponent from '@/components/layouts/sections/LeftLayoutHeaderComponent.vue';
 import ContactsComponent from '@/components/sections/ContactsComponent.vue';
+import FindFriendsComponent from '@/components/sections/FindFriendsComponent.vue';
 import type ContactModel from '@/models/ContactModel';
 import { onMounted, ref } from 'vue';
 import { useSearch } from '@/composables/getSearchComposable';
+import { storeToRefs } from 'pinia';
+import { useUserStore } from '@/stores/userStore';
 
 
 const emit = defineEmits(['person-select-handler']);
+const userStore: any = useUserStore();
+const { showFindFriends } = storeToRefs(userStore);
 
-onMounted(() => {
-        const selectedItem=filteredArray.value.find((a: ContactModel)=>a.selected);
-        if(selectedItem){
-          onSelectPersonHandler(selectedItem);
-        }
-        
+onMounted(async() => {
+    try {
+        userStore.getAllUsers();
+        await userStore.getAllChatsByUser();
+    } catch (error) {
+        console.log(error);
+    }
   });
 
 const onSelectPersonHandler = (contact: ContactModel) => { 

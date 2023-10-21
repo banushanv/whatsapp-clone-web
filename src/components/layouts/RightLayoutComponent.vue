@@ -3,25 +3,42 @@
   <div class="w-5/6 border flex flex-col">
     <!-- Header -->
     <RightLayoutHeaderComponent :selectedContact="selectedContact"></RightLayoutHeaderComponent>
+   <div v-if="userDataForChat.length">
+            <MessagesComponent  />
+        </div>
+        <div v-else>
+            <div class=" fixed w-[calc(100vw-620px)] h-[100vh] bg-gray-100 text-center">
+            <div class="grid h-screen place-items-center">
+                <div>
+                    <div class="w-full flex items-center justify-center">
+                        <img width="325" src="w-web-not-loaded-chat.png" alt="">
+                    </div>
+                    <div class="text-[32px] text-gray-500 font-light mt-10">WhatsApp Web</div>
+                    <div class="text-[14px] text-gray-600 mt-2">
+                        <div>Send and receive messages without keeping your phone online.</div>
+                        <div>Use WhatsApp on up to 4 linked devices and 1 phone at the same time.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
 
-    <!-- Messages -->
-    <MessagesComponent
-      :groupMessages="groupMessages"
-      :selectedContact="selectedContact"
-    ></MessagesComponent>
-
-    <!-- Input -->
-    <MessageInputComponent></MessageInputComponent>
+ 
   </div>
 </template>
 
 <script setup lang="ts">
 import RightLayoutHeaderComponent from '@/components/layouts/sections/RightLayoutHeaderComponent.vue';
 import MessagesComponent from '@/components/sections/MessagesComponent.vue';
-import MessageInputComponent from '@/components/common/MessageInputComponent.vue';
+
 import { ref, type PropType } from 'vue';
 import type ContactModel from '@/models/ContactModel';
 import type MessageModel from '@/models/MessageModel';
+import { storeToRefs } from 'pinia';
+import { useUserStore } from '@/stores/userStore';
+
+const userStore = useUserStore();
+const {  userDataForChat } = storeToRefs(userStore);
 
 defineProps({
   selectedContact: {
@@ -30,42 +47,8 @@ defineProps({
   }
 });
 
-const groupMessages = ref([
-  {
-    messageId: 0,
-    text: 'Hello guys! I am plannig a trip.',
-    time: '10.45 pm',
-    personName: 'Siva'
-  },
-  {
-    messageId: 1,
-    text: 'Hi Siva! I have one question for the trip',
-    time: '10.45 pm',
-    personName: 'Kumar'
-  },
-  {
-    messageId: 2,
-    text: 'Tell me?',
-    time: '10.45 pm',
-    personName: 'Siva'
-  },
-  {
-    messageId: 3,
-    text: 'Hi guys',
-    time: '11.04 pm',
-    personName: ''
-  },
-  {
-    messageId: 4,
-    text: 'Guess the place',
-    time: '11.04 pm',
-    personName: ''
-  },
-  {
-    messageId: 5,
-    text: 'Nuwaraeliya?',
-    time: '12:45 pm',
-    personName: 'Thiru'
-  }
-] as MessageModel[]);
+
 </script>
+<style>
+
+</style>

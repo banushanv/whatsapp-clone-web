@@ -1,44 +1,61 @@
 <template>
-    <div class="bg-gray-100 flex-1   overflow-auto  ">
-        <div v-for="contact in contacts" :key="contact.name">
-            <div class="px-3 flex items-center hover:bg-grey-lighter hover:bg-gray-100  cursor-pointer" 
-            :class="!contact.selected ? 'bg-white ' : ''" @click="onPersonChangeHandler(contact)">
-                <div>
-                <img class="h-6 w-6 rounded-full lg:h-12 lg:w-12" :src="contact.imageUrl" />
-                </div>
-                <div class="ml-4 flex-1 border-b border-grey-lighter py-4">
-                    <div class="flex items-bottom justify-between">
-                        <p class="text-grey-darkest flex-auto truncate">
-                            {{ contact.name }}
-                        </p>
-                        <p class="text-xs text-grey-darkest">
-                            {{ contact.time }}
-                        </p>
-                    </div>
-                    <p class="text-grey-dark mt-1 text-sm">
-                        {{ contact.message }}
-                    </p>
-                </div>
-            </div>
+    <div 
+        id="Messages" 
+        class="pt-1 z-0 overflow-auto fixed h-[calc(100vh-100px)] w-[420px]"
+    >
+        <div v-for="chat in chats" :key="chat">
+        <div @click="openChat(chat)">
+            <MessageRowComponent :chat="chat"/>
+        </div>
         </div>
     </div>
 </template>
 <script setup lang="ts">
-import type ContactModel from '@/models/ContactModel';
-import type { PropType } from 'vue';
+import { storeToRefs } from 'pinia';
+import { onMounted } from 'vue';
+import { useUserStore } from '@/stores/userStore';
+import MessageRowComponent from '@/components/sections/MessageRowComponent.vue';
 
-defineProps({
-  contacts: {
-    required: true,
-    type: Array as PropType<ContactModel[]>
-  }
+const userStore: any = useUserStore();
+const { chats, userDataForChat, sub } = storeToRefs(userStore);
+
+onMounted(async () => {
+    if (userDataForChat.value.length) {
+        await userStore.getChatById(userDataForChat.value[0].id);
+      
+    }
 });
 
-const emit = defineEmits(['person-select-change']);
-
-const onPersonChangeHandler=(selectedPerson: ContactModel)=>{
-    emit('person-select-change',selectedPerson);
+const openChat = async (chat: any) => {
+    userDataForChat.value = [] as any;
+    userDataForChat.value.push({
+        id: chat.id,
+        sub1: chat.sub1,
+        sub2: chat.sub2,
+        firstName: chat.user.firstName,
+        picture: chat.user.picture
+    });
+    try {
+        await userStore.getChatById(chat.id);
+        let data = {
+            id: chat.id,
+            key1: 'sub1HasViewed', val1: false, 
+            key2: 'sub2HasViewed', val2: false
+        };
+        if (chat.sub1 === sub.value) {
+            data.val1 = true;
+            data.val2 = true;
+        } else if (chat.sub2 === sub.value) {
+            data.val1 = true;
+            data.val2 = true;
+        }
+        await userStore.hasReadMessage(data);
+    } catch (error) {
+        console.log(error);
+    }
 };
+
+
 
 </script>
 

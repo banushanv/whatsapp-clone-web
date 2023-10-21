@@ -1,29 +1,45 @@
 // import the types from pinia
 import { defineStore} from 'pinia';
 import axios from 'axios';
-import { db } from '@/config/firebase-init';
-import { setDoc, getDoc, doc} from 'firebase/firestore';
+import { db } from '@/config/FirebaseConfig';
+import {   setDoc, 
+  getDoc, 
+  doc, 
+  getDocs, 
+  collection, 
+  updateDoc, 
+  arrayUnion, 
+  onSnapshot,
+  query} from 'firebase/firestore';
 
 axios.defaults.baseURL = import.meta.env.VITE_APP_WHATS_APP_API_URL;
 
 export const useUserStore = defineStore('counter', {
   state: () => ({    
-  sub: '',
-  email: '',
-  picture: '',
-  firstName: '',
-  lastName: '' }),
-  actions: {
+    sub: '',
+    email: '',
+    picture: '',
+    firstName: '',
+    lastName: '',
+    chats: [],
+    allUsers: [],
+    userDataForChat: [],
+    showFindFriends: false,
+    currentChat: null,
+    removeUsersFromFindFriends: []
+  }),
+    actions: {
     async getUserDetailsFromGoogle(data: any) {
       try {
           const res = await axios.post('api/google-login', {
               token: data.credential
+             
           });
-
+          console.log('res',res);
           const userExists = await this.checkIfUserExists(res.data.sub);
           if (!userExists) await this.saveUserDetails(res);
 
-        //  await this.getAllUsers();
+          await this.getAllUsers();
           
           this.sub = res.data.sub;
           this.email = res.data.email;
@@ -32,6 +48,16 @@ export const useUserStore = defineStore('counter', {
           this.lastName = res.data.family_name;
       } catch (error) {
           console.log(error);
+      }
+    },
+    async getAllUsers () {
+      const querySnapshot = await getDocs(collection(db, "users"));
+      const results = [];
+      querySnapshot.forEach(doc => { results.push(doc.data()) ;});
+
+      if (results.length) {
+        this.allUsers = [];
+        results.forEach(res => { this.allUsers.push(res) ;});
       }
     },
     async checkIfUserExists(id: string) {
@@ -51,7 +77,120 @@ export const useUserStore = defineStore('counter', {
       } catch (error) {
         console.log(error);
       }
+    },
+    async getChatById(id) {
+      onSnapshot(doc(db, "chat", id), (doc) => {
+        const res = [];
+        res.push(doc.data());
+        this.currentChat = res;
+      });
+    },
+    getAllChatsByUser() {
+      const q = query(collection(db, "chat"));
+
+      onSnapshot(q, (querySnapshot) => {
+        const chatArray = [];
+        querySnapshot.forEach(doc => {
+          const data = {
+            id: doc.id,
+            sub1: doc.data().sub1,
+            sub2: doc.data().sub2,
+            sub1HasViewed: doc.data().sub1HasViewed,
+            sub2HasViewed: doc.data().sub2HasViewed,
+            messages: doc.data().messages
+          };
+
+          if (doc.data().sub1 === this.sub) chatArray.push(data);
+          if (doc.data().sub2 === this.sub) chatArray.push(data);
+
+          this.removeUsersFromFindFriends = [];
+
+          chatArray.forEach(chat => {
+
+            if (this.sub === chat.sub1) {
+              this.allUsers.forEach(user => {
+                if (user.sub == chat.sub2) {
+                  chat.user = user;
+                  this.removeUsersFromFindFriends.push(user.sub);
+                }
+              });
+            }
+
+            if (this.sub === chat.sub2) {
+              this.allUsers.forEach(user => {
+                if (user.sub == chat.sub1) {
+                  chat.user = user;
+                  this.removeUsersFromFindFriends.push(user.sub);
+                }
+              });
+            }
+          });
+
+          this.chats = [];
+          chatArray.forEach(chat => {
+            this.chats.push(chat);
+          });
+
+        });
+      });
+    },
+
+    async sendMessage (data) {
+      try {
+        if (data.chatId) {
+          await updateDoc(doc(db, `chat/${data.chatId}`), {
+            sub1HasViewed: false,
+            sub2HasViewed: false,
+            messages: arrayUnion({
+              sub: this.sub,
+              message: data.message,
+              createdAt: Date.now()
+            })
+          });
+        } else {
+          const id = uuid();
+          await setDoc(doc(db, `chat/${id}`), {
+            sub1: this.sub,
+            sub2: data.sub2,
+            sub1HasViewed: false,
+            sub2HasViewed: false,
+
+            messages: [{
+              sub: this.sub,
+              message: data.message,
+              createdAt: Date.now()
+            }]
+
+          });
+
+          this.userDataForChat[0].id = id;
+          this.showFindFriends = false;
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async hasReadMessage(data) {
+      await updateDoc(doc(db, `chat/${data.id}`), {
+        [data.key1]: data.val1,
+        [data.key2]: data.val2
+      }, { merge:true });
+    },
+    logout() {
+      this.sub = '';
+      this.email = '';
+      this.picture = '';
+      this.firstName = '';
+      this.lastName = '';
+      this.allUsers = [];
+      this.chats = [];
+      this.userDataForChat = [];
+      this.removeUsersFromFindFriends = [];
+      this.showFindFriends = false;
+      this.currentChat = false;
     }
-  }
+  },
+  persist: true
 });
 

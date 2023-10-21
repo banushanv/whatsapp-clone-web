@@ -2,7 +2,7 @@
   <!-- Header -->
   <div class="py-2 px-3 bg-gray-100 flex flex-row justify-between items-center">
     <div>
-      <img class="w-9 h-9 rounded-full" :src="loggedUser.imageUrl" />
+      <img class="w-9 h-9 rounded-full" :src="userStore.picture || ''" />
     </div>
 
     <div class="flex">
@@ -16,7 +16,7 @@
         <IconChat></IconChat>
       </div>
       <div class="ml-6 cursor-pointer">
-        <IconMenu></IconMenu>
+        <IconMenu @click="logout"></IconMenu>
       </div>
     </div>
   </div>
@@ -26,8 +26,12 @@ import IconCommunity from '@/components/icons/IconCommunity.vue';
 import IconStatus from '@/components/icons/IconStatus.vue';
 import IconMenu from '@/components/icons/IconMenu.vue';
 import IconChat from '@/components/icons/IconChat.vue';
+import { useRouter } from 'vue-router';
 import type ContactModel from '@/models/ContactModel';
+import { useUserStore } from '@/stores/userStore';
 
+const userStore: any = useUserStore();
+const router = useRouter();
 
 const loggedUser: ContactModel = {
   name: 'Tom Cook',
@@ -41,4 +45,10 @@ const loggedUser: ContactModel = {
   lastSeen: '',
   lastSeenDateTime: ''
 };
+
+const logout = () => {
+    let res = confirm('Are you sute you want to logout?');
+    if (res) { userStore.logout(); router.push('/login'); };
+};
+
 </script>
