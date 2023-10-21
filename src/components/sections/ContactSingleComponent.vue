@@ -1,10 +1,9 @@
 <template>
   <div :class="isActive ? 'bg-gray-100' : ''">
     <div class="flex w-full px-4 py-3 items-center cursor-pointer">
-      <img class="rounded-full mr-4 w-12" :src="chat.user.picture || ''">
+      <img class="rounded-full mr-4 w-12" :src="chat.user.picture || ''" />
 
       <div class="w-full">
-      
         <div class="flex justify-between items-center">
           <div class="text-[15px] text-gray-600">
             {{ chat.user.firstName }}
@@ -15,17 +14,15 @@
         </div>
 
         <div class="flex items-center">
-        <IconDelivered :size="18" :fillColor="tickColor(chat)" class="mr-1"></IconDelivered>
+          <IconDelivered :size="18" :fillColor="tickColor(chat)" class="mr-1"></IconDelivered>
           <div class="text-[15px] w-full text-gray-500 flex items-center justify-between">
             {{ lastChatMessage(chat) }}...
           </div>
         </div>
       </div>
-
     </div>
 
     <div class="border-b w-[calc(100%-80px)] float-right"></div>
-
   </div>
 </template>
 
@@ -67,7 +64,7 @@ const tickColor = (chat: any) => {
 };
 
 const lastChatMessage = (chat: any) => {
-  return chat.messages[chat.messages.length - 1].message.substring(0,20);
+  return chat.messages[chat.messages.length - 1].message.substring(0, 20);
 };
 
 const lastCreatedAt = (chat: any) => {
