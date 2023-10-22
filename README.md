@@ -1,5 +1,3 @@
-# Whatsapp-clone
-
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
@@ -37,6 +35,10 @@ npm run watch
 ```
 
 ## Frontend Project Setup
+open another terminal
+```sh
+cd whatsapp-clone
+```
 
 ```sh
 npm install
@@ -63,7 +65,11 @@ npm install
 
      Link- https://firebase.google.com/docs/web/setup
 
-     Add your generated firebase config  code inside config/FirebaseConfig.ts file.
+     Add your generated firebaseConfig  code inside config/FirebaseConfig.ts file.
+     
+
+![final](https://github.com/banushanv/whatsapp-clone-web/assets/35912208/178f61be-552e-47d0-b481-4e3ab505342d)
+
 
      
 
