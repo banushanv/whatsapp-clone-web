@@ -63,7 +63,8 @@ npm install
 
      Add your generated firebaseConfig  code inside config/FirebaseConfig.ts file.
 
-     ![image](https://github.com/banushanv/whatsapp-clone-web/assets/35912208/8a641460-7dbd-498f-89ee-ab10d5fd4a0a)# Whatsapp-clone
+    ![Screenshot 2023-10-22 133259](https://github.com/banushanv/whatsapp-clone-web/assets/35912208/8755b961-fac1-4066-952a-6f4c7c293a77)
+
 
 
      
