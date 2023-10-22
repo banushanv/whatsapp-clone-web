@@ -49,11 +49,11 @@ npm install
 
     Add your new API KEY to the frontend .env file (VITE_APP_WHATS_APP_CLIENT_ID = your api key)
 
-    ![Alt text](image.png)
+    ![Alt text](/image.png)
 
     Add your already generated same API KEY to the backend .env file (CLIENT_ID = your api key)
 
-    ![Alt text](image-1.png)
+    ![Alt text](/image-1.png)
 
  ## Firebase setup
      Now go to https://firebase.google.com/
