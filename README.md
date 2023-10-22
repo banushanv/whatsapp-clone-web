@@ -27,14 +27,20 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 npm install
 ```
 
+## Code setup
+    Now go to https://console.cloud.google.com/
+
+    Generate an API KEY.
+
+    Add your new API KEY to the .env file (VITE_APP_WHATS_APP_CLIENT_ID = your api key)
+
+     
+
 ### Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
 ```
-.env file please add your VITE_APP_WHATS_APP_CLIENT_ID    
-
-
 ## Backtend Project Setup
 
 ```sh
@@ -45,12 +51,16 @@ cd backend
 npm install
 ```
 
-### Start the server
+## Code setup
+    Add your already generated same API KEY to the backend .env file (CLIENT_ID = your api key) 
 
+     
+
+### Start the server
 ```sh
 npm run watch
 ```
-.env file please add your VITE_APP_WHATS_APP_CLIENT_ID    
+ 
 
 ### Type-Check, Compile and Minify for Production
 
