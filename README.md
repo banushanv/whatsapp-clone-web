@@ -35,6 +35,10 @@ npm run watch
 ```
 
 ## Frontend Project Setup
+open another terminal
+```sh
+cd whatsapp-clone
+```
 
 ```sh
 npm install
