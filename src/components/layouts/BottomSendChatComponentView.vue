@@ -86,9 +86,8 @@ const sendMessage = async () => {
   }
   await userStore.hasSeenMessage(data);
 
-  let objDiv: any = document.getElementById('ChatsSection');
+  let objDiv: any = document.getElementById('ChatsSections');
   objDiv.scrollTop = objDiv.scrollHeight;
-
   disableBtn.value = false;
 };
 </script>
