@@ -49,7 +49,7 @@ npm install
 
     Add your new API KEY to the frontend .env file (VITE_APP_WHATS_APP_CLIENT_ID = your api key)
 
-    ![Alt text](/image.png)
+    ![Screenshot 2022-12-19 at 14 33 10](https://user-images.githubusercontent.com/108229029/208371968-8a66bbed-d157-4ab3-927f-cc573e6f9aaf.png)
 
     Add your already generated same API KEY to the backend .env file (CLIENT_ID = your api key)
 
