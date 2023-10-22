@@ -1,6 +1,5 @@
 export default class MessageModel {
-    messageId!: number;
-    text!: string;
-    time!: string;
-    personName!: string;
+    createdAt!: number;
+    message!: string;
+    sub!: string;
 }

@@ -18,16 +18,12 @@
       </div>
     </div>
 
-    <div
-      id="Search"
-      class="bg-white w-full flex justify-between items-center px-2 border-b shadow-sm"
-    >
+    <div class="bg-white w-full flex justify-between items-center px-2 border-b shadow-sm">
       <div class="px-2 m-2 bg-[#F0F0F0] flex items-center justify-center rounded-md">
         <IconSearch class="ml-2 pt-2" />
         <input
           @click="showFindFriends = !showFindFriends"
           class="appearance-none w-72 bg-[#F0F0F0] py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder:text-sm placeholder:text-gray-500"
-          autocomplete="off"
           type="text"
           placeholder="Search or start a new chat"
         />
@@ -35,6 +31,14 @@
       <IconFilter></IconFilter>
     </div>
   </div>
+  <ConfirmationDialogComponent
+    v-if="isLogout"
+    headerText="Log out?"
+    content="Are you sure want to log out?"
+    buttonText="Log out"
+    @on-cancel-handler="isLogout = false"
+    @on-confirm-handler="logoutConfirm"
+  ></ConfirmationDialogComponent>
 </template>
 
 <script setup lang="ts">
@@ -43,12 +47,14 @@ import IconStatus from '@/components/icons/IconStatus.vue';
 import IconMenu from '@/components/icons/IconMenu.vue';
 import IconSearch from '@/components/icons/IconSearch.vue';
 import IconFilter from '@/components/icons/IconFilter.vue';
+import ConfirmationDialogComponent from '@/components/common/ConfirmationDialogComponent.vue';
 import IconChat from '@/components/icons/IconChat.vue';
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useUserStore } from '@/stores/userStore';
 import router from '@/router';
 
+const isLogout = ref(false);
 const userStore: any = useUserStore();
 const { showFindFriends } = storeToRefs(userStore);
 
@@ -62,10 +68,11 @@ onMounted(async () => {
 });
 
 const logout = () => {
-  let res = confirm('Are you sute you want to logout?');
-  if (res) {
-    userStore.logout();
-    router.push('/login');
-  }
+  isLogout.value = true;
+};
+
+const logoutConfirm = () => {
+  userStore.logout();
+  router.push('/login');
 };
 </script>

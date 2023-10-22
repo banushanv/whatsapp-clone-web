@@ -1,41 +1,35 @@
-// import the types from pinia
-import { defineStore} from 'pinia';
+import { defineStore } from 'pinia';
 import axios from 'axios';
+import { v4 as uuid } from 'uuid';
 import { db } from '@/config/FirebaseConfig';
-import {   setDoc, 
-  getDoc, 
-  doc, 
-  getDocs, 
-  collection, 
-  updateDoc, 
-  arrayUnion, 
-  onSnapshot,
-  query} from 'firebase/firestore';
+import { setDoc, getDoc, doc, getDocs, collection, updateDoc, arrayUnion, onSnapshot,query} from 'firebase/firestore';
+import type UserModel from '@/models/UserModel';
+import type UserWithChatModel from '@/models/UserWithChatModel';
+import type UserDataForChatModel from '@/models/UserDataForChatModel';
 
 axios.defaults.baseURL = import.meta.env.VITE_APP_WHATS_APP_API_URL;
 
-export const useUserStore = defineStore('counter', {
-  state: () => ({    
+export const useUserStore = defineStore('user', {
+  state: () => ({
     sub: '',
     email: '',
     picture: '',
     firstName: '',
     lastName: '',
-    chats: [],
-    allUsers: [],
-    userDataForChat: [],
+    chats: [] as UserWithChatModel[],
+    allUsers: [] as UserModel[],
+    userDataForChat: [] as UserDataForChatModel[],
     showFindFriends: false,
-    currentChat: null,
-    removeUsersFromFindFriends: []
+    currentChat: null as any,
+    removeUsersFromFindFriends: [] as string[]
   }),
-    actions: {
+  actions: {
     async getUserDetailsFromGoogle(data: any) {
       try {
           const res = await axios.post('api/google-login', {
               token: data.credential
-             
           });
-          console.log('res',res);
+
           const userExists = await this.checkIfUserExists(res.data.sub);
           if (!userExists) await this.saveUserDetails(res);
 
@@ -50,21 +44,24 @@ export const useUserStore = defineStore('counter', {
           console.log(error);
       }
     },
+
     async getAllUsers () {
       const querySnapshot = await getDocs(collection(db, "users"));
-      const results = [];
-      querySnapshot.forEach(doc => { results.push(doc.data()) ;});
+      const results = [] as UserModel[];
+      querySnapshot.forEach((doc: any) => { results.push(doc.data()); });
 
       if (results.length) {
         this.allUsers = [];
-        results.forEach(res => { this.allUsers.push(res) ;});
+        results.forEach(res => { this.allUsers.push(res); });
       }
     },
+
     async checkIfUserExists(id: string) {
       const docRef = doc(db, "users", id);
       const docSnap = await getDoc(docRef);
       return docSnap.exists();
     },
+
     async saveUserDetails (res: any) {
       try {
         await setDoc(doc(db, "users", res.data.sub), {
@@ -78,18 +75,20 @@ export const useUserStore = defineStore('counter', {
         console.log(error);
       }
     },
-    async getChatById(id) {
+
+    async getChatById(id: string) {
       onSnapshot(doc(db, "chat", id), (doc) => {
         const res = [];
         res.push(doc.data());
         this.currentChat = res;
       });
     },
+
     getAllChatsByUser() {
       const q = query(collection(db, "chat"));
 
       onSnapshot(q, (querySnapshot) => {
-        const chatArray = [];
+        const chatArray = [] as UserWithChatModel[];
         querySnapshot.forEach(doc => {
           const data = {
             id: doc.id,
@@ -98,17 +97,17 @@ export const useUserStore = defineStore('counter', {
             sub1HasViewed: doc.data().sub1HasViewed,
             sub2HasViewed: doc.data().sub2HasViewed,
             messages: doc.data().messages
-          };
+          } as UserWithChatModel;
 
           if (doc.data().sub1 === this.sub) chatArray.push(data);
           if (doc.data().sub2 === this.sub) chatArray.push(data);
 
           this.removeUsersFromFindFriends = [];
 
-          chatArray.forEach(chat => {
+          chatArray.forEach((chat: UserWithChatModel) => {
 
             if (this.sub === chat.sub1) {
-              this.allUsers.forEach(user => {
+              this.allUsers.forEach((user: UserModel) => {
                 if (user.sub == chat.sub2) {
                   chat.user = user;
                   this.removeUsersFromFindFriends.push(user.sub);
@@ -117,7 +116,7 @@ export const useUserStore = defineStore('counter', {
             }
 
             if (this.sub === chat.sub2) {
-              this.allUsers.forEach(user => {
+              this.allUsers.forEach((user: UserModel) => {
                 if (user.sub == chat.sub1) {
                   chat.user = user;
                   this.removeUsersFromFindFriends.push(user.sub);
@@ -127,7 +126,7 @@ export const useUserStore = defineStore('counter', {
           });
 
           this.chats = [];
-          chatArray.forEach(chat => {
+          chatArray.forEach((chat: UserWithChatModel) => {
             this.chats.push(chat);
           });
 
@@ -135,7 +134,7 @@ export const useUserStore = defineStore('counter', {
       });
     },
 
-    async sendMessage (data) {
+    async sendMessage (data: any) {
       try {
         if (data.chatId) {
           await updateDoc(doc(db, `chat/${data.chatId}`), {
@@ -171,12 +170,12 @@ export const useUserStore = defineStore('counter', {
       }
     },
 
-    async hasReadMessage(data) {
-      await updateDoc(doc(db, `chat/${data.id}`), {
-        [data.key1]: data.val1,
-        [data.key2]: data.val2
-      }, { merge:true });
+    async hasReadMessage(data: any) {
+      await updateDoc(
+        doc(db, `chat/${data.id}`), { [data.key1]: data.val1, [data.key2]: data.val2} as any, 
+        { merge:true });
     },
+
     logout() {
       this.sub = '';
       this.email = '';
@@ -188,9 +187,8 @@ export const useUserStore = defineStore('counter', {
       this.userDataForChat = [];
       this.removeUsersFromFindFriends = [];
       this.showFindFriends = false;
-      this.currentChat = false;
+      this.currentChat = null;
     }
   },
   persist: true
 });
-
