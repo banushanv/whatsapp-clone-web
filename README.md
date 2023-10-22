@@ -32,6 +32,8 @@ npm install
 ```sh
 npm run dev
 ```
+.env file please add your VITE_APP_WHATS_APP_CLIENT_ID    
+
 
 ## Backtend Project Setup
 
@@ -43,12 +45,12 @@ cd backend
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Start the server
 
 ```sh
 npm run watch
 ```
-
+.env file please add your VITE_APP_WHATS_APP_CLIENT_ID    
 
 ### Type-Check, Compile and Minify for Production
 
