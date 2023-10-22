@@ -102,6 +102,6 @@ npm run lint
 
     Users will be added in the database after login from gmail.
 
-    If you want to see the existing users click the search bar.
+    If you want to see the existing users click whatsApp  search bar.
     
     You can logout by clicking the triple dot menu icon from the top menu sections side.
