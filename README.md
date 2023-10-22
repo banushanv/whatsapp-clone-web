@@ -32,7 +32,9 @@ npm install
 
     Generate an API KEY.
 
-    Add your new API KEY to the .env file (VITE_APP_WHATS_APP_CLIENT_ID = your api key)
+    Add your new API KEY to the frontend .env file (VITE_APP_WHATS_APP_CLIENT_ID = your api key)
+
+    Add your already generated same API KEY to the backend .env file (CLIENT_ID = your api key)
 
  ## Firebase setup
      Now go to https://firebase.google.com/
@@ -41,7 +43,7 @@ npm install
 
      Link- https://firebase.google.com/docs/web/setup
 
-     Add your generated firebase  code inside config/FirebaseConfig.ts file.
+     Add your generated firebase config  code inside config/FirebaseConfig.ts file.
 
      
 
@@ -59,11 +61,6 @@ cd backend
 ```sh
 npm install
 ```
-
-## Code setup
-    Add your already generated same API KEY to the backend .env file (CLIENT_ID = your api key) 
-
-     
 
 ### Start the server
 ```sh
