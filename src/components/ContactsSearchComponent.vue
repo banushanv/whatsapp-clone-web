@@ -12,7 +12,7 @@
             <div class="text-[15px] text-gray-600">{{ user.firstName }} {{ user.lastName }}</div>
           </div>
           <div class="flex items-center">
-            <div class="text-[15px] text-gray-500">{{translate('whatsapp_clone.using_whatsApp')}}</div>
+            <div class="text-[15px] text-gray-500">{{translate('whatsapp_clone.using_whatsapp')}}</div>
           </div>
         </div>
       </div>

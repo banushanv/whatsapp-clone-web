@@ -99,3 +99,5 @@ npm run lint
 
 ### Running Project
 Please Login with mulitple gmail accounts and chat with them.
+Users will be added in the database after login from gmail.
+If you want to see the existing users click the search bar.
