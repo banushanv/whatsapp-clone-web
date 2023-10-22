@@ -1,21 +1,22 @@
 <template>
   <div
-    id="Messages"
     class="pt-1 z-0 overflow-auto fixed h-[calc(100vh-100px)] w-[420px] mt-[100px]"
   >
     <div v-for="chat in chats" :key="chat.id">
-      <div @click="openChat(chat)">
+      <div @click="onSelectChatRow(chat)">
         <ContactSingleComponent :chat="chat" />
       </div>
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 import { useUserStore } from '@/stores/userStore';
 import ContactSingleComponent from '@/components/sections/ContactSingleComponent.vue';
 import type UserDataForChatModel from '@/models/UserDataForChatModel';
+import type UserWithChatModel from '@/models/UserWithChatModel';
 
 const userStore = useUserStore();
 const { chats, userDataForChat, sub } = storeToRefs(userStore);
@@ -26,7 +27,7 @@ onMounted(async () => {
   }
 });
 
-const openChat = async (chat: any) => {
+const onSelectChatRow = async (chat: UserWithChatModel) => {
   userDataForChat.value = [] as UserDataForChatModel[];
   userDataForChat.value.push({
     id: chat.id,
@@ -35,25 +36,27 @@ const openChat = async (chat: any) => {
     firstName: chat.user.firstName,
     picture: chat.user.picture
   });
+
   try {
     await userStore.getChatById(chat.id);
-    let data = {
+     let data = {
       id: chat.id,
       key1: 'sub1HasViewed',
       val1: false,
       key2: 'sub2HasViewed',
       val2: false
     };
-    if (chat.sub1 === sub.value) {
+     if (chat.sub1 === sub.value) {
       data.val1 = true;
       data.val2 = true;
-    } else if (chat.sub2 === sub.value) {
+     } else if (chat.sub2 === sub.value) {
       data.val1 = true;
       data.val2 = true;
-    }
-    await userStore.hasReadMessage(data);
-  } catch (error) {
-    console.log(error);
-  }
+     }
+     await userStore.hasSeenMessage(data);
+  } 
+    catch (error) {
+      console.log(error);
+   }
 };
 </script>

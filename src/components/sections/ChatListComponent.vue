@@ -23,12 +23,12 @@
   <script setup lang="ts">
   import { storeToRefs } from 'pinia';
   import { useUserStore } from '@/stores/userStore';
-import { watch } from 'vue';
+  import { watch } from 'vue';
  
   
-  const userStore: any = useUserStore();
+  const userStore = useUserStore();
   const { currentChat,sub } = storeToRefs(userStore);
-  
+
   watch(
   () => currentChat.value,
   (chat) => {

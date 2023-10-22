@@ -84,7 +84,7 @@ const sendMessage = async () => {
     data.val1 = false;
     data.val2 = true;
   }
-  await userStore.hasReadMessage(data);
+  await userStore.hasSeenMessage(data);
 
   let objDiv: any = document.getElementById('MessagesSection');
   objDiv.scrollTop = objDiv.scrollHeight;

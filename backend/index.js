@@ -13,13 +13,16 @@ app.use(cors());
 
 app.post('/api/google-login', async (req, res) => {
   try {
-    const ticket = await client.verifyIdToken({
-    idToken: req.body.token
-  });
+       const ticket = await client.verifyIdToken({
+       idToken: req.body.token
+  }); 
 
    res.status(200).json(ticket.getPayload());
-   } catch (error) {
+ }
+   
+   catch (error) {
         res.status(400).json({ message: error.message });
       }
     });
+
 app.listen(PORT, () => {});
