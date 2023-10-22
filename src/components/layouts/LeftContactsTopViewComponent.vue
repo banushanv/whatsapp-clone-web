@@ -1,5 +1,5 @@
 <template>
-  <div id="Header" class="fixed w-[420px] z-10">
+  <div class="fixed w-full z-10 sm:w-[420px]">
     <div class="bg-[#f0f2f5] w-full flex justify-between items-center px-3 py-2">
       <img class="rounded-full ml-1 w-9 h-9" :src="userStore.picture || ''" alt="" />
       <div class="flex items-center justify-center">
@@ -23,7 +23,7 @@
         <IconSearch class="ml-2 pt-2" />
         <input
           @click="showFindFriends=!showFindFriends"
-          class="appearance-none w-full bg-[#F0F0F0] py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder:text-sm placeholder:text-gray-500"
+          class="appearance-none w-full  sm:w-72 bg-[#F0F0F0] py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder:text-sm placeholder:text-gray-500"
           type="text"
           placeholder="Search or start a new chat"
         />

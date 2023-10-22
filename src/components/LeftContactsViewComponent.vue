@@ -1,6 +1,6 @@
 <template>
   <div
-    class="pt-1 z-0 overflow-auto fixed h-[calc(100vh-100px)] w-[420px] mt-[100px]"
+     class="pt-1 z-0 overflow-auto fixed h-[calc(100vh-100px)] w-full mt-[100px] sm:w-[420px]"
   >
     <div v-for="chat in chats" :key="chat.id">
       <div @click="onSelectChatRow(chat)">
@@ -60,3 +60,13 @@ const onSelectChatRow = async (chat: UserWithChatModel) => {
    }
 };
 </script>
+<!-- Use media queries to change the styles for smaller screens -->
+<style scoped>
+@media (max-width: 768px) {
+  /* Reduce the height and margin-top of the container */
+  div {
+    height: calc(100vh - 50px);
+    margin-top: 50px;
+  }
+  }
+</style>
