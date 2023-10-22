@@ -1,6 +1,6 @@
 <template>
    <svg
-      viewBox='0 0 30 24'
+      viewBox='0 0 32 24'
       height='32'
       width='32'
       preserveAspectRatio='xMidYMid meet'

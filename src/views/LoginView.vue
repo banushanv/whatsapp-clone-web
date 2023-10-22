@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full min-w-min">
     <div class="z-[-1] w-full h-[225px] fixed top-0" style="background-color: #00a884"></div>
     <div class="bg-gray-100 z-[-1] w-full h-[calc(100vh-225px)] fixed bottom-0"></div>
 

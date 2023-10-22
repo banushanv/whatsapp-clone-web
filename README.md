@@ -96,3 +96,6 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+### Running Project
+Please Login with mulitple gmail accounts and chat with them.
