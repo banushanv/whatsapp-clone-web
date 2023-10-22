@@ -1,8 +1,8 @@
 <template>
   <div class="fixed w-full z-10 sm:w-[420px]">
-    <div class="bg-[#f0f2f5] w-full flex justify-between items-center px-3 py-2">
+    <div class="bg-[#f0f2f5] w-full flex justify-between items-center px-3 py-2 min-w-[293px]">
       <img class="rounded-full ml-1 w-9 h-9" :src="userStore.picture || ''" alt="" />
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-center ">
         <div class="ml-6 cursor-pointer">
           <IconCommunity></IconCommunity>
         </div>
@@ -18,12 +18,12 @@
       </div>
     </div>
 
-    <div class="bg-white w-full flex justify-between items-center px-2 border-b shadow-sm">
-      <div class="px-2 m-2 bg-[#F0F0F0] flex items-center justify-center rounded-md">
+    <div class="bg-white w-full   flex justify-between items-center px-2 border-b shadow-sm min-w-[293px]">
+      <div class="px-1 m-2 bg-[#F0F0F0] flex items-center justify-center rounded-md ">
         <IconSearch class="ml-2 pt-2" />
         <input
           @click="showFindFriends=!showFindFriends"
-          class="appearance-none w-full  sm:w-72 bg-[#F0F0F0] py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder:text-sm placeholder:text-gray-500"
+          class="appearance-none w-full  sm:w-80 bg-[#F0F0F0] py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder:text-sm placeholder:text-gray-500"
           type="text"
           placeholder="Search or start a new chat"
         />

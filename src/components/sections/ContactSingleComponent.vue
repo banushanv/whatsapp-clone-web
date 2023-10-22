@@ -1,5 +1,5 @@
 <template>
-  <div :class="isActive ? 'bg-gray-100' : ''">
+  <div :class="isActive ? 'bg-gray-100' : ''"  class="min-w-[293px] ">
     <div class="flex w-full px-4 py-3 items-center cursor-pointer">
       <img class="rounded-full mr-4 w-12" :src="chat.user.picture || ''" />
 
