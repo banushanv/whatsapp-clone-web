@@ -1,0 +1,5 @@
+| Version | Release Date | Features | Changes | Dependencies | Compatibility |
+| --- | --- | --- | --- | --- | --- |
+| 1.0.0 | 2023-01-01 | - Basic message sending and receiving - User authentication with QR code - Chat list and chat view - Media preview and download - Dark mode and light mode | - Initial release | - Vue 3.2.26 - Vite 2.7.6 - Tailwind CSS 3.0.7 - TypeScript 4.5.4 - Firebase 9.6.1 - Day.js 1.10.7 | - Chrome 96 or higher - Firefox 95 or higher - Safari 15 or higher |
+| 1.1.0 | 2023-02-01 | - Message status indicators (sent, delivered, read) - Message search and filter - Chat archive and delete - Chat mute and block - Profile picture and status update | - Improved chat performance and security - Fixed some bugs and errors | - Same as version 1.0.0 | - Same as version 1.0.0 |
+| 1.2.0 | 2023-03-01 | - Voice message recording and playback - Video call and voice call - Group chat creation and management - Emoji picker and sticker pack - Notification settings and sounds | - Added user feedback and rating system - Enhanced encryption and privacy | - Same as version 1.0.0 | - Same as version 1.0.0 |
