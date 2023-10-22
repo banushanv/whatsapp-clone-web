@@ -34,6 +34,13 @@ npm install
 
     Add your new API KEY to the .env file (VITE_APP_WHATS_APP_CLIENT_ID = your api key)
 
+ ## Firebase setup
+     Now go to https://firebase.google.com/
+
+     Create web app's Firebase configuration
+     
+     Add your generated firebase  code inside config/FirebaseConfig.ts file.
+
      
 
 ### Compile and Hot-Reload for Development
