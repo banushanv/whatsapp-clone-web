@@ -62,9 +62,8 @@ npm install
      Link- https://firebase.google.com/docs/web/setup
 
      Add your generated firebaseConfig  code inside config/FirebaseConfig.ts file.
-
-    ![Screenshot 2023-10-22 133259](https://github.com/banushanv/whatsapp-clone-web/assets/35912208/8755b961-fac1-4066-952a-6f4c7c293a77)
-
+     
+![Screenshot 2023-10-22 133259](https://github.com/banushanv/whatsapp-clone-web/assets/35912208/57dca4d3-7305-4e66-ad3c-94692cabc7ed)
 
 
      
