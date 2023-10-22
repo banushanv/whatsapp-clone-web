@@ -1,9 +1,9 @@
 <template>
   <div id="FindFriends" class="pt-[100px] overflow-auto fixed h-[100vh] w-full">
-    <div v-for="user in usersComputed" :key="user.sub">
+    <div v-for="user in usersItems" :key="user.sub">
       <div
         v-if="hideMe(user)"
-        @click="createNewChat(user)"
+        @click="addNewChat(user)"
         class="flex w-full p-4 items-center cursor-pointer">
 
       <img class="rounded-full mr-4 w-12" :src="user.picture || ''" />
@@ -38,7 +38,7 @@ const hideMe = (user: UserModel) => {
   return true;
 };
 
-const createNewChat = (user: UserModel) => {
+const addNewChat = (user: UserModel) => {
   userDataForChat.value = [];
   userDataForChat.value.push({
     id: '',
@@ -49,7 +49,7 @@ const createNewChat = (user: UserModel) => {
   });
 };
 
-const usersComputed = computed(() => {
+const usersItems = computed(() => {
   allUsers.value.forEach((user: UserModel) => users.value.push(user));
   removeUsersFromFindFriends.value.forEach((remove: any) => {
     let index = users.value.findIndex((user: UserModel) => user.sub === remove);

@@ -9,14 +9,14 @@
             {{ chat.user.firstName }}
           </div>
           <div class="text-[12px] text-gray-600">
-            {{ lastCreatedAt(chat) }}
+            {{ recentCreatedAt(chat) }}
           </div>
         </div>
 
         <div class="flex items-center">
-          <IconDelivered :size="18" :fillColor="tickColor(chat)" class="mr-1"></IconDelivered>
+          <IconDelivered :size="18" :fillColor="seenDeliveredColor(chat)" class="mr-1"></IconDelivered>
           <div class="text-[15px] w-full text-gray-500 flex items-center justify-between">
-            {{ lastChatMessage(chat) }}...
+            {{ recentChatMessage(chat) }}...
           </div>
         </div>
       </div>
@@ -32,7 +32,8 @@ import dayjs from 'dayjs';
 import { useUserStore } from '@/stores/userStore';
 import IconDelivered from '@/components/icons/IconDelivered.vue';
 import { storeToRefs } from 'pinia';
-const userStore: any = useUserStore();
+
+const userStore = useUserStore();
 const { sub, userDataForChat } = storeToRefs(userStore);
 
 const props = defineProps({ chat: Object });
@@ -50,7 +51,7 @@ const isActive = computed(() => {
   return false;
 });
 
-const tickColor = (chat: any) => {
+const seenDeliveredColor = (chat: any) => {
   let color = '';
   if (chat.sub1 === sub.value) {
     if (chat.sub1HasViewed) color = '#7DF9FF';
@@ -60,14 +61,14 @@ const tickColor = (chat: any) => {
     if (chat.sub2HasViewed) color = '#7DF9FF';
     else color = '#B5B5B5';
   }
-  return color;
+    return color;
 };
 
-const lastChatMessage = (chat: any) => {
+const recentChatMessage = (chat: any) => {
   return chat.messages[chat.messages.length - 1].message.substring(0, 20);
 };
 
-const lastCreatedAt = (chat: any) => {
+const recentCreatedAt = (chat: any) => {
   if (chat.messages.length) {
     return dayjs(chat.messages[chat.messages.length - 1].createdAt).format('YYYY-MM-DD');
   }

@@ -1,6 +1,6 @@
 <template>
      <div
-        id="MessagesSection"
+        id="ChatsSections"
         class="pt-20 pb-8 z-[-1] h-[calc(100vh-65px)] w-[calc(100vw-420px)] overflow-auto fixed touch-auto"
       >
         <div v-if="currentChat && currentChat.length" class="px-20 text-sm">
@@ -20,6 +20,7 @@
         </div>
       </div>
   </template>
+  
   <script setup lang="ts">
   import { storeToRefs } from 'pinia';
   import { useUserStore } from '@/stores/userStore';
@@ -34,7 +35,7 @@
   (chat) => {
     if (chat.length) {
       setTimeout(() => {
-        let objDiv: any = document.getElementById('MessagesSection');
+        let objDiv: any = document.getElementById('ChatsSections');
         objDiv.scrollTop = objDiv.scrollHeight;
       }, 50);
     }

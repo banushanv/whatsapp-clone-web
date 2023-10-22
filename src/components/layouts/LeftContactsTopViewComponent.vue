@@ -23,7 +23,7 @@
         <IconSearch class="ml-2 pt-2" />
         <input
           @click="showFindFriends=!showFindFriends"
-          class="appearance-none w-72 bg-[#F0F0F0] py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder:text-sm placeholder:text-gray-500"
+          class="appearance-none w-full bg-[#F0F0F0] py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder:text-sm placeholder:text-gray-500"
           type="text"
           placeholder="Search or start a new chat"
         />
