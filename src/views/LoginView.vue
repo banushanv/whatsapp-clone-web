@@ -6,12 +6,12 @@
     <div class="max-w-xl mx-auto">
       <div class="mt-10 flex items-center w-full">
         <img class="h-8 w-8 ml-5" src="whatsapp.png" alt="" />
-        <div class="font-semibold text-gray-100 ml-6">WHATSAPP WEB</div>
+        <div class="font-semibold text-gray-100  ml-2">WHATSAPP WEB</div>
       </div>
 
-      <div class="w-full bg-white z-10 p-24 m-0 mt-10">
-        <div class="text-center text-4xl text-gray-700 font-light pb-10">WhatsApp Clone</div>
-        <div class="w-full flex justify-center p-3 rounded-md">
+      <div class="w-full bg-white z-10 p-16 m-0 mt-10">
+        <div class="text-center text-xl sm:text-4xl text-gray-700 font-light pb-6">WhatsApp Clone</div>
+        <div class="w-full flex justify-center h-12 pt-1 rounded-md">
             <GoogleLogin :callback="callback"/>
         </div>
       </div>

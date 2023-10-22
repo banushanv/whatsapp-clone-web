@@ -61,7 +61,7 @@ npm install
  ## Firebase setup
      Now go to https://firebase.google.com/
 
-     Create web app's Firebase configuration 
+     Create a project and add web app's Firebase configuration 
 
      Link- https://firebase.google.com/docs/web/setup
 
@@ -98,7 +98,7 @@ npm run lint
 ```
 
 ### Running Project
-Please Login with mulitple gmail accounts and chat with them.
+Please Login with mulitple gmail accounts and do the chat functionality.
 Users will be added in the database after login from gmail.
 If you want to see the existing users click the search bar.
-You can logout by clicking the triple dot menu icon from the both side.
+You can logout by clicking the triple dot menu icon from the top menu sections side.
