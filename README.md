@@ -101,3 +101,4 @@ npm run lint
 Please Login with mulitple gmail accounts and chat with them.
 Users will be added in the database after login from gmail.
 If you want to see the existing users click the search bar.
+You can logout by clicking the triple dot menu icon from the both side.
