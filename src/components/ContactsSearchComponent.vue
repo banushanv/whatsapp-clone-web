@@ -1,5 +1,5 @@
 <template>
-  <div id="FindFriends" class="pt-[100px] overflow-auto fixed h-[100vh] w-full">
+  <div id="FindFriends" class="pt-[100px] overflow-auto fixed h-[100vh] w-full hidden sm:block">
     <div v-for="user in usersItems" :key="user.sub">
       <div
         v-if="hideMe(user)"

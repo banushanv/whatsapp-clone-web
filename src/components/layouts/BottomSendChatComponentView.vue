@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full sm:w-[calc(100vw-420px)] p-2.5 z-10 bg-[#F0F0F0] fixed bottom-0 hidden sm:block">
+  <div class="w-full sm:w-[calc(100vw-420px)] p-2.5 z-10 bg-[#F0F0F0] fixed bottom-0 ">
     <div class="flex items-center justify-center">
       <IconPlus class="cursor-pointer mx-1.5"></IconPlus>
 

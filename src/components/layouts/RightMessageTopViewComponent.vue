@@ -1,7 +1,7 @@
 <template>
-  <div class="border-l border-green-500 w-full hidden sm:block">
+  <div class="border-l border-green-500 w-full">
     <div
-      class="bg-[#f0f2f5] fixed  z-10 min-w-[calc(100vw-420px)] flex justify-between items-center px-2 py-2 gap-2"
+      class="bg-[#f0f2f5] fixed  z-10 min-w-[calc(100vw-420px)] sm:pl-[10px] w-full pl-auto flex justify-between items-center px-1 py-2 gap-2"
     >
       <div class="flex items-center">
         <img

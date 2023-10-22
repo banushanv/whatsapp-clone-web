@@ -1,7 +1,7 @@
 <template>
      <div
         id="ChatsSections"
-        class="pt-20 pb-8 z-[-1] h-[calc(100vh-65px)] w-full sm:w-[calc(100vw-420px)] overflow-auto fixed touch-auto min-w-fit hidden sm:block"
+        class="pt-20 pb-8 z-[-1] h-[calc(100vh-65px)] w-full sm:w-[calc(100vw-420px)] overflow-auto fixed touch-auto min-w-fit "
       >
         <div v-if="currentChat && currentChat.length" class="px-20 text-sm">
           <div v-for="msg in currentChat[0].messages" :key="msg">

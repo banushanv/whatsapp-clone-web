@@ -1,7 +1,7 @@
 <template>
-  <div class="ml-[420px] w-full ">
+  <div class="sm:ml-[420px] w-full ml-auto">
     <div class="w-full">
-      <div  class="w-full  h-full fixed bg-whatsapp-bg" id="ChatBg"></div>
+      <div  class="w-full  h-full fixed bg-whatsapp-bg " id="ChatBg"></div>
       <RightMessageTopViewComponent></RightMessageTopViewComponent>
       <ChatListComponent></ChatListComponent>
       <BottomSendChatComponentView></BottomSendChatComponentView>

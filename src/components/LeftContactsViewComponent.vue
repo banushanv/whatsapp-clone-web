@@ -1,6 +1,6 @@
 <template>
   <div
-     class="pt-1 z-0 overflow-auto fixed h-[calc(100vh-100px)] w-full mt-[100px] sm:w-[420px] bg-white"
+     class="pt-1 z-0 overflow-auto fixed h-[calc(100vh-100px)] w-full mt-[100px] sm:w-[420px] bg-white hidden sm:block"
   >
     <div v-for="chat in chats" :key="chat.id">
       <div @click="onSelectChatRow(chat)">
