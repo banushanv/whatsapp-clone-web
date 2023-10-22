@@ -21,6 +21,21 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
+## Backend Project Setup
+
+```sh
+cd backend
+```
+
+```sh
+npm install
+```
+
+### Start the server
+```sh
+npm run watch
+```
+
 ## Frontend Project Setup
 
 ```sh
@@ -52,21 +67,6 @@ npm install
 ```sh
 npm run dev
 ```
-## Backtend Project Setup
-
-```sh
-cd backend
-```
-
-```sh
-npm install
-```
-
-### Start the server
-```sh
-npm run watch
-```
- 
 
 ### Type-Check, Compile and Minify for Production
 
