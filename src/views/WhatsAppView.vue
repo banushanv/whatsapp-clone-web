@@ -30,13 +30,13 @@ import { onMounted } from 'vue';
 import { useUserStore } from '@/stores/userStore';
 import { storeToRefs } from 'pinia';
 
-const userStore: any = useUserStore();
+const userStore = useUserStore();
 const { showFindFriends, userDataForChat } = storeToRefs(userStore);
 
 onMounted(async () => {
   try {
-    userStore.getAllUsers();
-    await userStore.getAllChatsByUser();
+    userStore.fetchAllUsers();
+    await userStore.fetchAllChatsByUser();
   } catch (error) {
     console.log(error);
   }

@@ -32,13 +32,30 @@ import IconSend from '@/components/icons/IconSend.vue';
 import IconPlus from '@/components/icons/IconPlus.vue';
 import { storeToRefs } from 'pinia';
 import { useUserStore } from '@/stores/userStore';
-import { ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 
-const userStore: any = useUserStore();
+
+const userStore = useUserStore();
 const { userDataForChat, sub } = storeToRefs(userStore);
 
 let message = ref('');
 let disableBtn = ref(false);
+
+
+onMounted(() => {
+        document.addEventListener('keypress', onKeyEnterHandler);
+  });
+
+onUnmounted(() => {
+        document.removeEventListener('keypress', onKeyEnterHandler);
+  });
+
+
+  const onKeyEnterHandler=(e: any)=>{    //keyboard events
+      if (e.key === 'Enter') {
+          sendMessage();
+      }
+    };
 
 const sendMessage = async () => {
   if (message.value === '') return;

@@ -3,7 +3,8 @@
   "whatsapp_clone":{
     "search_start": "Search or start new chat",
     "type_message":"Type a message",
-    "message_encryption": "Messages to this chat and calls are now secured with end-to-end encryption. Tap for more info"
+    "message_encryption": "Messages to this chat and calls are now secured with end-to-end encryption. Tap for more info",
+    "using_whatsApp!":"Hi, I'm using WhatsApp!"
   
   }
 }

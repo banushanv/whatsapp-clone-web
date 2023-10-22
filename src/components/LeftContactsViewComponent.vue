@@ -3,7 +3,7 @@
     id="Messages"
     class="pt-1 z-0 overflow-auto fixed h-[calc(100vh-100px)] w-[420px] mt-[100px]"
   >
-    <div v-for="chat in chats" :key="chat">
+    <div v-for="chat in chats" :key="chat.id">
       <div @click="openChat(chat)">
         <ContactSingleComponent :chat="chat" />
       </div>
@@ -15,8 +15,9 @@ import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 import { useUserStore } from '@/stores/userStore';
 import ContactSingleComponent from '@/components/sections/ContactSingleComponent.vue';
+import type UserDataForChatModel from '@/models/UserDataForChatModel';
 
-const userStore: any = useUserStore();
+const userStore = useUserStore();
 const { chats, userDataForChat, sub } = storeToRefs(userStore);
 
 onMounted(async () => {
@@ -26,7 +27,7 @@ onMounted(async () => {
 });
 
 const openChat = async (chat: any) => {
-  userDataForChat.value = [] as any;
+  userDataForChat.value = [] as UserDataForChatModel[];
   userDataForChat.value.push({
     id: chat.id,
     sub1: chat.sub1,

@@ -22,7 +22,7 @@
       <div class="px-2 m-2 bg-[#F0F0F0] flex items-center justify-center rounded-md">
         <IconSearch class="ml-2 pt-2" />
         <input
-          @click="showFindFriends = !showFindFriends"
+          @click="showFindFriends=!showFindFriends"
           class="appearance-none w-72 bg-[#F0F0F0] py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder:text-sm placeholder:text-gray-500"
           type="text"
           placeholder="Search or start a new chat"
@@ -55,13 +55,13 @@ import { useUserStore } from '@/stores/userStore';
 import router from '@/router';
 
 const isLogout = ref(false);
-const userStore: any = useUserStore();
+const userStore = useUserStore();
 const { showFindFriends } = storeToRefs(userStore);
 
 onMounted(async () => {
   try {
-    userStore.getAllUsers();
-    await userStore.getAllChatsByUser();
+    userStore.fetchAllUsers();
+    await userStore.fetchAllChatsByUser();
   } catch (error) {
     console.log(error);
   }

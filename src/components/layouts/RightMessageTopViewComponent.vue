@@ -38,11 +38,10 @@
 import IconSearch from '@/components/icons/IconSearch.vue';
 import IconMenu from '@/components/icons/IconMenu.vue';
 import IconCamera from '@/components/icons/IconCamera.vue';
-
 import { storeToRefs } from 'pinia';
 import { useUserStore } from '@/stores/userStore';
 
-const userStore: any = useUserStore();
+const userStore = useUserStore();
 const { userDataForChat } = storeToRefs(userStore);
 </script>
 <style></style>

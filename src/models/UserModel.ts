@@ -1,4 +1,4 @@
-export default class ContactModel {
+export default class UserModel {
     sub!: string;
     email!: string;
     picture!: string;

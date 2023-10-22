@@ -1,30 +1,31 @@
+import type UserModel from '@/models/UserModel';
+import type UserWithChatModel from '@/models/UserWithChatModel';
+import type UserDataForChatModel from '@/models/UserDataForChatModel';
 import { defineStore } from 'pinia';
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import { db } from '@/config/FirebaseConfig';
 import { setDoc, getDoc, doc, getDocs, collection, updateDoc, arrayUnion, onSnapshot,query} from 'firebase/firestore';
-import type UserModel from '@/models/UserModel';
-import type UserWithChatModel from '@/models/UserWithChatModel';
-import type UserDataForChatModel from '@/models/UserDataForChatModel';
+
 
 axios.defaults.baseURL = import.meta.env.VITE_APP_WHATS_APP_API_URL;
 
 export const useUserStore = defineStore('user', {
   state: () => ({
-    sub: '',
-    email: '',
-    picture: '',
-    firstName: '',
-    lastName: '',
     chats: [] as UserWithChatModel[],
     allUsers: [] as UserModel[],
     userDataForChat: [] as UserDataForChatModel[],
     showFindFriends: false,
     currentChat: null as any,
-    removeUsersFromFindFriends: [] as string[]
+    removeUsersFromFindFriends: [] as string[],
+    sub: '',
+    email: '',
+    picture: '',
+    firstName: '',
+    lastName: ''
   }),
   actions: {
-    async getUserDetailsFromGoogle(data: any) {
+    async fetchUserDetailsFromGoogle(data: any) {
       try {
           const res = await axios.post('api/google-login', {
               token: data.credential
@@ -33,7 +34,7 @@ export const useUserStore = defineStore('user', {
           const userExists = await this.checkIfUserExists(res.data.sub);
           if (!userExists) await this.saveUserDetails(res);
 
-          await this.getAllUsers();
+          await this.fetchAllUsers();
           
           this.sub = res.data.sub;
           this.email = res.data.email;
@@ -45,7 +46,7 @@ export const useUserStore = defineStore('user', {
       }
     },
 
-    async getAllUsers () {
+    async fetchAllUsers () {
       const querySnapshot = await getDocs(collection(db, "users"));
       const results = [] as UserModel[];
       querySnapshot.forEach((doc: any) => { results.push(doc.data()); });
@@ -84,7 +85,7 @@ export const useUserStore = defineStore('user', {
       });
     },
 
-    getAllChatsByUser() {
+    fetchAllChatsByUser() {
       const q = query(collection(db, "chat"));
 
       onSnapshot(q, (querySnapshot) => {
