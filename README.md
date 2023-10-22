@@ -1,4 +1,4 @@
-# whatsapp-clone
+# Whatsapp-clone
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -37,8 +37,10 @@ npm install
  ## Firebase setup
      Now go to https://firebase.google.com/
 
-     Create web app's Firebase configuration
-     
+     Create web app's Firebase configuration 
+
+     Link- https://firebase.google.com/docs/web/setup
+
      Add your generated firebase  code inside config/FirebaseConfig.ts file.
 
      
