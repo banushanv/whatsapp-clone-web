@@ -48,12 +48,13 @@ npm install
     Generate an API KEY.
 
     Add your new API KEY to the frontend .env file (VITE_APP_WHATS_APP_CLIENT_ID = your api key)
-
-    ![Alt text](/image.png)
-
+   
+   ![Screenshot 2023-10-22 131233](https://github.com/banushanv/whatsapp-clone-web/assets/35912208/8d90b6bc-ad57-4d3e-a583-0374a0c3734f)
+  
     Add your already generated same API KEY to the backend .env file (CLIENT_ID = your api key)
 
-    ![Alt text](/image-1.png)
+   ![Screenshot 2023-10-22 131440](https://github.com/banushanv/whatsapp-clone-web/assets/35912208/1f9bb000-c3b9-40a6-8282-69a687cfc7c0)
+
 
  ## Firebase setup
      Now go to https://firebase.google.com/
