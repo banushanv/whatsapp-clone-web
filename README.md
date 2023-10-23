@@ -19,20 +19,6 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Backend Project Setup
-
-```sh
-cd backend
-```
-
-```sh
-npm install
-```
-
-### Start the server
-```sh
-npm run watch
-```
 
 ## Frontend Project Setup
 open another terminal
@@ -42,36 +28,7 @@ cd whatsapp-clone
 
 ```sh
 npm install
-```
-
-## Code setup
-    Now go to https://console.cloud.google.com/
-
-    Generate an API KEY.
-
-    Add your new API KEY to the frontend .env file (VITE_APP_WHATS_APP_CLIENT_ID = your api key)
-   
-   ![Screenshot 2023-10-22 131233](https://github.com/banushanv/whatsapp-clone-web/assets/35912208/8d90b6bc-ad57-4d3e-a583-0374a0c3734f)
-  
-    Add your already generated same API KEY to the backend .env file (CLIENT_ID = your api key)
-
-   ![Screenshot 2023-10-22 131440](https://github.com/banushanv/whatsapp-clone-web/assets/35912208/1f9bb000-c3b9-40a6-8282-69a687cfc7c0)
-
-
- ## Firebase setup
-     Now go to https://firebase.google.com/
-
-     Create a project and add web app's Firebase configuration 
-
-     Link- https://firebase.google.com/docs/web/setup
-
-     Add your generated firebaseConfig  code inside config/FirebaseConfig.ts file.
-     
-
-![final](https://github.com/banushanv/whatsapp-clone-web/assets/35912208/178f61be-552e-47d0-b481-4e3ab505342d)
-
-
-     
+```     
 
 ### Compile and Hot-Reload for Development
 
