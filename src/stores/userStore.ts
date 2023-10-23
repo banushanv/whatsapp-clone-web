@@ -2,13 +2,13 @@ import type UserModel from '@/models/UserModel';
 import type UserWithChatModel from '@/models/UserWithChatModel';
 import type UserDataForChatModel from '@/models/UserDataForChatModel';
 import { defineStore } from 'pinia';
-import axios from 'axios';
 import { v4 as uuid } from 'uuid';
-import { db } from '@/config/FirebaseConfig';
+import { auth, db, googleProvider } from '@/config/FirebaseConfig';
 import {setDoc,getDoc,doc,getDocs,collection,updateDoc,arrayUnion,onSnapshot,query} from 'firebase/firestore';
 import { ref } from 'vue';
+import { signInWithPopup } from 'firebase/auth';
 
-axios.defaults.baseURL = import.meta.env.VITE_APP_WHATS_APP_API_URL;
+//axios.defaults.baseURL = import.meta.env.VITE_APP_WHATS_APP_API_URL;
 
 export const useUserStore = defineStore('user', () => {
   // use ref to define reactive state properties
@@ -25,22 +25,22 @@ export const useUserStore = defineStore('user', () => {
   const lastName = ref('');
 
   // use function to define actions
-  async function fetchUserDetailsFromGoogle(data: any) {
+  async function fetchUserDetailsFromGoogle() {
     try {
-      const res = await axios.post('api/google-login', {
-        token: data.credential
-      });
-
-      const userExists = await checkIfUserExists(res.data.sub);
-      if (!userExists) await saveUserDetails(res);
-
+      await signInWithPopup(auth,googleProvider); 
+      const userExists = await checkIfUserExists(auth.currentUser!.uid);
+      if (!userExists) await saveUserDetails(auth.currentUser);
       await fetchAllUsers();
 
-      sub.value = res.data.sub;
-      email.value = res.data.email;
-      picture.value = res.data.picture;
-      firstName.value = res.data.given_name;
-      lastName.value = res.data.family_name;
+     if(auth.currentUser){
+      const names=auth.currentUser.displayName?.split(' ');
+  
+      sub.value = auth.currentUser.uid ? auth.currentUser.uid: '';
+      email.value =auth.currentUser.email ? auth.currentUser.email : '';
+      picture.value =auth.currentUser.photoURL ? auth.currentUser.photoURL :'';
+      firstName.value =names ? names[0] :'';
+      lastName.value =names ? names[1] :'';
+    }
     } catch (error) {
       console.log(error);
     }
@@ -54,10 +54,10 @@ export const useUserStore = defineStore('user', () => {
     });
 
     if (results.length) {
-      allUsers.value = [];
-      results.forEach((res) => {
-        allUsers.value.push(res);
-      });
+        allUsers.value = [];
+        results.forEach((res) => {
+          allUsers.value.push(res);
+       });
     }
   }
 
@@ -69,12 +69,14 @@ export const useUserStore = defineStore('user', () => {
 
   async function saveUserDetails(res: any) {
     try {
-      await setDoc(doc(db, 'users', res.data.sub), {
-        sub: res.data.sub,
-        email: res.data.email,
-        picture: res.data.picture,
-        firstName: res.data.given_name,
-        lastName: res.data.family_name
+      const names=res.displayName?.split(' ');
+
+      await setDoc(doc(db, 'users', res.uid), {
+        sub: res.uid,
+        email: res.email,
+        picture: res.photoURL,
+        firstName: names[0],
+        lastName: names[1]
       });
     } catch (error) {
       console.log(error);
