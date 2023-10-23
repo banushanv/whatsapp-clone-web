@@ -72,6 +72,7 @@ npm run lint
         Mobile & Ipad
 ![mobile](https://github.com/banushanv/whatsapp-clone-web/assets/35912208/506d73d5-b28d-4523-b378-1a31640e19d8)  ![ipad](https://github.com/banushanv/whatsapp-clone-web/assets/35912208/2da90cac-0f0d-4902-b8b9-e74d4d212352)
 
-
+        Logout
+![logout](https://github.com/banushanv/whatsapp-clone-web/assets/35912208/8533c79b-938f-40f6-b745-dfa11a6d35c6)
 
 
