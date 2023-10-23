@@ -106,7 +106,7 @@ npm run lint
     
     You can logout by clicking the triple dot menu icon from the top menu sections side.
 
-Project Images
+   #### Project Images
   
 ![Login](https://github.com/banushanv/whatsapp-clone-web/assets/35912208/2b4861ea-94ac-4631-a213-a48d09652541)
 
