@@ -65,7 +65,8 @@ npm run lint
 
    #### Project Images
          PC view
-![Login](https://github.com/banushanv/whatsapp-clone-web/assets/35912208/2b4861ea-94ac-4631-a213-a48d09652541)
+![Login](https://github.com/banushanv/whatsapp-clone-web/assets/35912208/47d8d0ac-6ff1-406a-906e-39d4716340eb)
+
 
 ![whatsapp](https://github.com/banushanv/whatsapp-clone-web/assets/35912208/2ce75311-ee99-4174-bc7d-856bf40dd08e)
 
