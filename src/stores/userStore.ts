@@ -7,6 +7,7 @@ import { auth, db, googleProvider } from '@/config/FirebaseConfig';
 import {setDoc,getDoc,doc,getDocs,collection,updateDoc,arrayUnion,onSnapshot,query} from 'firebase/firestore';
 import { ref } from 'vue';
 import { signInWithPopup } from 'firebase/auth';
+import router from '@/router';
 
 //axios.defaults.baseURL = import.meta.env.VITE_APP_WHATS_APP_API_URL;
 
@@ -28,6 +29,11 @@ export const useUserStore = defineStore('user', () => {
   async function fetchUserDetailsFromGoogle() {
     try {
       await signInWithPopup(auth,googleProvider); 
+      if(auth.currentUser!.uid){
+        setTimeout(() => {
+          router.push('/');
+         }, 100);
+      }
       const userExists = await checkIfUserExists(auth.currentUser!.uid);
       if (!userExists) await saveUserDetails(auth.currentUser);
       await fetchAllUsers();
