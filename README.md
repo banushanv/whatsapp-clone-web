@@ -55,6 +55,9 @@ npm run lint
 ```
 
 ### Running Project
+
+    Please run it in an incognito mode/Private Mode
+     
     Please Login with mulitple gmail accounts and do the chat functionality.
 
     Users will be added in the database after login from gmail.
