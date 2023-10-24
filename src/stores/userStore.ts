@@ -29,11 +29,7 @@ export const useUserStore = defineStore('user', () => {
   async function fetchUserDetailsFromGoogle() {
     try {
       await signInWithPopup(auth,googleProvider); 
-      if(auth.currentUser!.uid){
-        setTimeout(() => {
-          router.push('/');
-         }, 100);
-      }
+ 
       const userExists = await checkIfUserExists(auth.currentUser!.uid);
       if (!userExists) await saveUserDetails(auth.currentUser);
       await fetchAllUsers();

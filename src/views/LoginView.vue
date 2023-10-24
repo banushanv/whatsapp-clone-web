@@ -32,11 +32,15 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/userStore';;
 import IconGoogle from '@/components/icons/IconGoogle.vue';
+import router from '@/router';
 
 const userStore = useUserStore();
 const googleSignin = async () => {
   try {
     await userStore.fetchUserDetailsFromGoogle();
+    setTimeout(() => {
+          router.push('/');
+         }, 100);
 
   } catch (err) {
     console.error(err);
