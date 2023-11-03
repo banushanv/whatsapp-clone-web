@@ -13,9 +13,9 @@
         <div class="text-center text-2xl sm:text-4xl text-gray-900 font-thin pb-6">
           WhatsApp Clone
         </div>
-        <div class="w-full flex justify-center h-12 pt-4 rounded-md">
+        <div class="w-full flex justify-center h-8 rounded-md">
           <button
-            class="bg-gray-200 flex items-center text-md gap-2 text-center cursor-pointer font-medium rounded-md"
+            class="bg-gray-200  text-md sm:text-sm flex items-center  gap-2 text-center cursor-pointer font-medium rounded-md p-3"
             @click="googleSignin"
           >
             <!-- use an SVG element for the Google icon -->
@@ -39,7 +39,9 @@ const googleSignin = async () => {
   try {
     await userStore.fetchUserDetailsFromGoogle();
     setTimeout(() => {
+      if (userStore.allUsers.length>0) {
           router.push('/');
+      }
          }, 100);
 
   } catch (err) {

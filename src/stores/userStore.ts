@@ -7,7 +7,7 @@ import { auth, db, googleProvider } from '@/config/FirebaseConfig';
 import {setDoc,getDoc,doc,getDocs,collection,updateDoc,arrayUnion,onSnapshot,query} from 'firebase/firestore';
 import { ref } from 'vue';
 import { signInWithPopup } from 'firebase/auth';
-import router from '@/router';
+
 
 //axios.defaults.baseURL = import.meta.env.VITE_APP_WHATS_APP_API_URL;
 

@@ -20,7 +20,7 @@
 
     <div class="bg-white w-full    flex justify-between items-center px-2 border-b shadow-sm min-w-[293px]">
       <div class="px-2 m-2 bg-[#F0F0F0] flex items-center justify-center rounded-md ">
-        <IconSearch class="ml-2 pt-2" />
+        <IconSearch class="ml-2 pt-1" />
         <input
           @click="showFindFriends=!showFindFriends"
           class="appearance-none w-full  sm:w-80 bg-[#F0F0F0] py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder:text-sm placeholder:text-gray-500"
